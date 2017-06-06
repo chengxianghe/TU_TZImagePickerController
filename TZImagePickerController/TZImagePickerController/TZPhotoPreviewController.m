@@ -219,6 +219,10 @@
             [_tzImagePickerVc showAlertWithTitle:title];
             return;
         // 2. if not over the maxImagesCount / 如果没有超过最大个数限制
+        } else if (model.type == TZAssetModelMediaTypePhotoGif && !_tzImagePickerVc.allowPickingGif) {
+            NSString *title = [NSBundle tz_localizedStringForKey:@"Can not allow choose GIF"];
+            [_tzImagePickerVc showAlertWithTitle:title];
+            return;
         } else {
             [_tzImagePickerVc.selectedModels addObject:model];
             if (self.photos) {
@@ -413,6 +417,13 @@
     
     _doneButton.hidden = NO;
     _selectButton.hidden = !_tzImagePickerVc.showSelectBtn;
+    
+    // don‘t allow choose GIF
+    if (model.type == TZAssetModelMediaTypePhotoGif && !_tzImagePickerVc.allowPickingGif) {
+        _selectButton.hidden = YES;
+        _originalPhotoButton.hidden = YES;
+        _originalPhotoLabel.hidden = YES;
+    }
     // 让宽度/高度小于 最小可选照片尺寸 的图片不能选中
     if (![[TZImageManager manager] isPhotoSelectableWithAsset:model.asset]) {
         _numberLabel.hidden = YES;

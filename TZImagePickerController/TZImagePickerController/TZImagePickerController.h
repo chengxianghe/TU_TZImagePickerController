@@ -162,7 +162,7 @@
 // If system version > iOS8,asset is kind of PHAsset class, else is ALAsset class.
 // 如果用户选择了一个视频，下面的handle会被执行
 // 如果系统版本大于iOS8，asset是PHAsset类的对象，否则是ALAsset类的对象
-@property (nonatomic, copy) void (^didFinishPickingVideoHandle)(UIImage *coverImage,id asset);
+@property (nonatomic, copy) void (^didFinishPickingVideoHandle)(UIImage *coverImage,TZAssetModel *model,id asset);
 
 @property (nonatomic, weak) id<TZImagePickerControllerDelegate> pickerDelegate;
 
@@ -190,7 +190,7 @@
 // If system version > iOS8,asset is kind of PHAsset class, else is ALAsset class.
 // 如果用户选择了一个视频，下面的handle会被执行
 // 如果系统版本大于iOS8，asset是PHAsset类的对象，否则是ALAsset类的对象
-- (void)imagePickerController:(TZImagePickerController *)picker didFinishPickingVideo:(UIImage *)coverImage sourceAssets:(id)asset;
+- (void)imagePickerController:(TZImagePickerController *)picker didFinishPickingVideo:(UIImage *)coverImage model:(TZAssetModel *)model sourceAssets:(id)asset;
 
 @end
 

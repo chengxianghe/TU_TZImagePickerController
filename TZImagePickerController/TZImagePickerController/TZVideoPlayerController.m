@@ -145,11 +145,11 @@
 
 - (void)callDelegateMethod {
     TZImagePickerController *imagePickerVc = (TZImagePickerController *)self.navigationController;
-    if ([imagePickerVc.pickerDelegate respondsToSelector:@selector(imagePickerController:didFinishPickingVideo:sourceAssets:)]) {
-        [imagePickerVc.pickerDelegate imagePickerController:imagePickerVc didFinishPickingVideo:_cover sourceAssets:_model.asset];
+    if ([imagePickerVc.pickerDelegate respondsToSelector:@selector(imagePickerController:didFinishPickingVideo:model:sourceAssets:)]) {
+        [imagePickerVc.pickerDelegate imagePickerController:imagePickerVc didFinishPickingVideo:_cover model:_model sourceAssets:_model.asset];
     }
     if (imagePickerVc.didFinishPickingVideoHandle) {
-        imagePickerVc.didFinishPickingVideoHandle(_cover,_model.asset);
+        imagePickerVc.didFinishPickingVideoHandle(_cover,_model,_model.asset);
     }
 }
 

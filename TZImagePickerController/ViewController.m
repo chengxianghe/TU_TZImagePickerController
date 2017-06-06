@@ -455,9 +455,10 @@
 // If system version > iOS8,asset is kind of PHAsset class, else is ALAsset class.
 // 如果用户选择了一个视频，下面的handle会被执行
 // 如果系统版本大于iOS8，asset是PHAsset类的对象，否则是ALAsset类的对象
-- (void)imagePickerController:(TZImagePickerController *)picker didFinishPickingVideo:(UIImage *)coverImage sourceAssets:(id)asset {
+- (void)imagePickerController:(TZImagePickerController *)picker didFinishPickingVideo:(UIImage *)coverImage model:(TZAssetModel *)model sourceAssets:(id)asset {
     _selectedPhotos = [NSMutableArray arrayWithArray:@[coverImage]];
     _selectedAssets = [NSMutableArray arrayWithArray:@[asset]];
+    _selectedModels = [NSMutableArray arrayWithArray:@[model]];
     // open this code to send video / 打开这段代码发送视频
     // [[TZImageManager manager] getVideoOutputPathWithAsset:asset completion:^(NSString *outputPath) {
     // NSLog(@"视频导出到本地完成,沙盒路径为:%@",outputPath);
@@ -474,7 +475,8 @@
 - (void)deleteBtnClik:(UIButton *)sender {
     [_selectedPhotos removeObjectAtIndex:sender.tag];
     [_selectedAssets removeObjectAtIndex:sender.tag];
-    
+    [_selectedModels removeObjectAtIndex:sender.tag];
+
     [_collectionView performBatchUpdates:^{
         NSIndexPath *indexPath = [NSIndexPath indexPathForItem:sender.tag inSection:0];
         [_collectionView deleteItemsAtIndexPaths:@[indexPath]];
@@ -517,6 +519,26 @@
 - (IBAction)allowPickingGifSwitchClick:(UISwitch *)sender {
     if (sender.isOn) {
         [_allowPickingImageSwitch setOn:YES animated:YES];
+    } else {
+        // 删除已选的gif
+        NSMutableArray *removeModelsArr = [NSMutableArray array];
+        NSMutableArray *removePhotosArr = [NSMutableArray array];
+        NSMutableArray *removeAssetsArr = [NSMutableArray array];
+
+        for (TZAssetModel *model in _selectedModels) {
+            if (model.type == TZAssetModelMediaTypePhotoGif) {
+                [removeModelsArr addObject:model];
+                NSInteger index = [_selectedModels indexOfObject:model];
+                [removePhotosArr addObject:_selectedPhotos[index]];
+                [removeAssetsArr addObject:_selectedAssets[index]];
+            }
+        }
+        
+        [_selectedAssets removeObjectsInArray:removeAssetsArr];
+        [_selectedPhotos removeObjectsInArray:removePhotosArr];
+        [_selectedModels removeObjectsInArray:removeModelsArr];
+        [_collectionView reloadData];
+        _collectionView.contentSize = CGSizeMake(0, ((_selectedPhotos.count + 2) / 3 ) * (_margin + _itemWH));
     }
 }
 
