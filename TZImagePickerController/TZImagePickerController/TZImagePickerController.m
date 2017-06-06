@@ -426,11 +426,10 @@
 
 - (void)setSelectedAssets:(NSMutableArray *)selectedAssets {
     _selectedAssets = selectedAssets;
-    _selectedModels = [NSMutableArray array];
     for (id asset in selectedAssets) {
         TZAssetModel *model = [TZAssetModel modelWithAsset:asset type:TZAssetModelMediaTypePhoto];
         model.isSelected = YES;
-        [_selectedModels addObject:model];
+        [self.selectedModels addObject:model];
     }
 }
 
@@ -480,6 +479,13 @@
 
 - (void)dealloc {
     // NSLog(@"%@ dealloc",NSStringFromClass(self.class));
+}
+
+- (NSMutableArray<TZAssetModel *> *)selectedModels {
+    if (!_selectedModels) {
+        _selectedModels = [NSMutableArray array];
+    }
+    return _selectedModels;
 }
 
 #pragma mark - Public
