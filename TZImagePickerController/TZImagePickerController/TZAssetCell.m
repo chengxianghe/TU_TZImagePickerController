@@ -97,6 +97,8 @@
             _timeLength.tz_left = self.videoImgView.tz_right;
             _timeLength.textAlignment = NSTextAlignmentRight;
         } else {
+            _selectImageView.hidden = NO;
+            _selectPhotoButton.hidden = NO;
             self.timeLength.text = @"GIF";
             self.videoImgView.hidden = YES;
             _timeLength.tz_left = 5;
