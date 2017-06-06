@@ -14,7 +14,6 @@
 #import "UIView+Layout.h"
 #import "TZImageManager.h"
 #import "TZVideoPlayerController.h"
-#import "TZGifPhotoPreviewController.h"
 #import "TZLocationManager.h"
 
 @interface TZPhotoPickerController ()<UICollectionViewDataSource,UICollectionViewDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UIAlertViewDelegate> {
@@ -358,11 +357,11 @@ static CGSize AssetGridThumbnailSize;
 
 - (void)callDelegateMethodWithPhotos:(NSArray *)photos assets:(NSArray *)assets infoArr:(NSArray *)infoArr {
     TZImagePickerController *tzImagePickerVc = (TZImagePickerController *)self.navigationController;
-    if ([tzImagePickerVc.pickerDelegate respondsToSelector:@selector(imagePickerController:didFinishPickingPhotos:sourceAssets:isSelectOriginalPhoto:)]) {
-        [tzImagePickerVc.pickerDelegate imagePickerController:tzImagePickerVc didFinishPickingPhotos:photos sourceAssets:assets isSelectOriginalPhoto:_isSelectOriginalPhoto];
+    if ([tzImagePickerVc.pickerDelegate respondsToSelector:@selector(imagePickerController:didFinishPickingPhotos:models:sourceAssets:isSelectOriginalPhoto:)]) {
+        [tzImagePickerVc.pickerDelegate imagePickerController:tzImagePickerVc didFinishPickingPhotos:photos models:tzImagePickerVc.selectedModels sourceAssets:assets isSelectOriginalPhoto:_isSelectOriginalPhoto];
     }
-    if ([tzImagePickerVc.pickerDelegate respondsToSelector:@selector(imagePickerController:didFinishPickingPhotos:sourceAssets:isSelectOriginalPhoto:infos:)]) {
-        [tzImagePickerVc.pickerDelegate imagePickerController:tzImagePickerVc didFinishPickingPhotos:photos sourceAssets:assets isSelectOriginalPhoto:_isSelectOriginalPhoto infos:infoArr];
+    if ([tzImagePickerVc.pickerDelegate respondsToSelector:@selector(imagePickerController:didFinishPickingPhotos:models:sourceAssets:isSelectOriginalPhoto:infos:)]) {
+        [tzImagePickerVc.pickerDelegate imagePickerController:tzImagePickerVc didFinishPickingPhotos:photos models:tzImagePickerVc.selectedModels sourceAssets:assets isSelectOriginalPhoto:_isSelectOriginalPhoto infos:infoArr];
     }
     if (tzImagePickerVc.didFinishPickingPhotosHandle) {
         tzImagePickerVc.didFinishPickingPhotosHandle(tzImagePickerVc.selectedModels,photos,assets,_isSelectOriginalPhoto);

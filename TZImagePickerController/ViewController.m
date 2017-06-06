@@ -16,12 +16,12 @@
 #import "TZImageManager.h"
 #import "TZVideoPlayerController.h"
 #import "TZPhotoPreviewController.h"
-#import "TZGifPhotoPreviewController.h"
 #import "TZLocationManager.h"
 
 @interface ViewController ()<TZImagePickerControllerDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UIActionSheetDelegate,UIImagePickerControllerDelegate,UIAlertViewDelegate,UINavigationControllerDelegate> {
     NSMutableArray *_selectedPhotos;
     NSMutableArray *_selectedAssets;
+    NSMutableArray *_selectedModels;
     BOOL _isSelectOriginalPhoto;
     
     CGFloat _itemWH;
@@ -146,12 +146,13 @@
             ALAsset *alAsset = asset;
             isVideo = [[alAsset valueForProperty:ALAssetPropertyType] isEqualToString:ALAssetTypeVideo];
         }
-        if ([[asset valueForKey:@"filename"] containsString:@"GIF"] && self.allowPickingGifSwitch.isOn) {
-            TZGifPhotoPreviewController *vc = [[TZGifPhotoPreviewController alloc] init];
-            TZAssetModel *model = [TZAssetModel modelWithAsset:asset type:TZAssetModelMediaTypePhotoGif timeLength:@""];
-            vc.model = model;
-            [self presentViewController:vc animated:YES completion:nil];
-        } else if (isVideo) { // perview video / 预览视频
+//        if ([[asset valueForKey:@"filename"] containsString:@"GIF"] && self.allowPickingGifSwitch.isOn) {
+//            TZGifPhotoPreviewController *vc = [[TZGifPhotoPreviewController alloc] init];
+//            TZAssetModel *model = [TZAssetModel modelWithAsset:asset type:TZAssetModelMediaTypePhotoGif timeLength:@""];
+//            vc.model = model;
+//            [self presentViewController:vc animated:YES completion:nil];
+//        } else
+        if (isVideo) { // perview video / 预览视频
             TZVideoPlayerController *vc = [[TZVideoPlayerController alloc] init];
             TZAssetModel *model = [TZAssetModel modelWithAsset:asset type:TZAssetModelMediaTypeVideo timeLength:@""];
             vc.model = model;
@@ -161,7 +162,9 @@
             imagePickerVc.maxImagesCount = self.maxCountTF.text.integerValue;
             imagePickerVc.allowPickingOriginalPhoto = self.allowPickingOriginalPhotoSwitch.isOn;
             imagePickerVc.isSelectOriginalPhoto = _isSelectOriginalPhoto;
+            imagePickerVc.selectedModels = _selectedModels;
             [imagePickerVc setDidFinishPickingPhotosHandle:^(NSArray<TZAssetModel *> *models, NSArray<UIImage *> *photos, NSArray *assets, BOOL isSelectOriginalPhoto) {
+                _selectedModels = [NSMutableArray arrayWithArray:models];
                 _selectedPhotos = [NSMutableArray arrayWithArray:photos];
                 _selectedAssets = [NSMutableArray arrayWithArray:assets];
                 _isSelectOriginalPhoto = isSelectOriginalPhoto;
@@ -193,6 +196,10 @@
     [_selectedAssets removeObjectAtIndex:sourceIndexPath.item];
     [_selectedAssets insertObject:asset atIndex:destinationIndexPath.item];
     
+    TZAssetModel *model = _selectedModels[sourceIndexPath.item];
+    [_selectedModels removeObjectAtIndex:sourceIndexPath.item];
+    [_selectedModels insertObject:model atIndex:destinationIndexPath.item];
+    
     [_collectionView reloadData];
 }
 
@@ -211,6 +218,8 @@
     if (self.maxCountTF.text.integerValue > 1) {
         // 1.设置目前已经选中的图片数组
         imagePickerVc.selectedAssets = _selectedAssets; // 目前已经选中的图片数组
+        imagePickerVc.selectedModels = _selectedModels; // 目前已经选中的图片数组models
+
     }
     imagePickerVc.allowTakePicture = self.showTakePhotoBtnSwitch.isOn; // 在内部显示拍照按钮
     
@@ -342,13 +351,13 @@
                         }
                         if (self.allowCropSwitch.isOn) { // 允许裁剪,去裁剪
                             TZImagePickerController *imagePicker = [[TZImagePickerController alloc] initCropTypeWithAsset:assetModel.asset photo:image completion:^(UIImage *cropImage, id asset) {
-                                [self refreshCollectionViewWithAddedAsset:asset image:cropImage];
+                                [self refreshCollectionViewWithModel:assetModel asset:asset image:cropImage];
                             }];
                             imagePicker.needCircleCrop = self.needCircleCropSwitch.isOn;
                             imagePicker.circleCropRadius = 100;
                             [self presentViewController:imagePicker animated:YES completion:nil];
                         } else {
-                            [self refreshCollectionViewWithAddedAsset:assetModel.asset image:image];
+                            [self refreshCollectionViewWithModel:assetModel asset:assetModel.asset image:image];
                         }
                     }];
                 }];
@@ -357,7 +366,8 @@
     }
 }
 
-- (void)refreshCollectionViewWithAddedAsset:(id)asset image:(UIImage *)image {
+- (void)refreshCollectionViewWithModel:(TZAssetModel *)model asset:(id)asset image:(UIImage *)image {
+    [_selectedModels addObject:model];
     [_selectedAssets addObject:asset];
     [_selectedPhotos addObject:image];
     [_collectionView reloadData];
@@ -423,7 +433,8 @@
 // 如果isSelectOriginalPhoto为YES，表明用户选择了原图
 // 你可以通过一个asset获得原图，通过这个方法：[[TZImageManager manager] getOriginalPhotoWithAsset:completion:]
 // photos数组里的UIImage对象，默认是828像素宽，你可以通过设置photoWidth属性的值来改变它
-- (void)imagePickerController:(TZImagePickerController *)picker didFinishPickingPhotos:(NSArray *)photos sourceAssets:(NSArray *)assets isSelectOriginalPhoto:(BOOL)isSelectOriginalPhoto {
+- (void)imagePickerController:(TZImagePickerController *)picker didFinishPickingPhotos:(NSArray *)photos models:(NSArray *)models sourceAssets:(NSArray *)assets isSelectOriginalPhoto:(BOOL)isSelectOriginalPhoto {
+    _selectedModels = [NSMutableArray arrayWithArray:models];
     _selectedPhotos = [NSMutableArray arrayWithArray:photos];
     _selectedAssets = [NSMutableArray arrayWithArray:assets];
     _isSelectOriginalPhoto = isSelectOriginalPhoto;
@@ -456,14 +467,6 @@
     // }];
     [_collectionView reloadData];
     // _collectionView.contentSize = CGSizeMake(0, ((_selectedPhotos.count + 2) / 3 ) * (_margin + _itemWH));
-}
-
-// If user picking a gif image, this callback will be called.
-// 如果用户选择了一个gif图片，下面的handle会被执行
-- (void)imagePickerController:(TZImagePickerController *)picker didFinishPickingGifImage:(UIImage *)animatedImage sourceAssets:(id)asset {
-    _selectedPhotos = [NSMutableArray arrayWithArray:@[animatedImage]];
-    _selectedAssets = [NSMutableArray arrayWithArray:@[asset]];
-    [_collectionView reloadData];
 }
 
 #pragma mark - Click Event

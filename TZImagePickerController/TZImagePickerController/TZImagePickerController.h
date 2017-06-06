@@ -164,10 +164,6 @@
 // 如果系统版本大于iOS8，asset是PHAsset类的对象，否则是ALAsset类的对象
 @property (nonatomic, copy) void (^didFinishPickingVideoHandle)(UIImage *coverImage,id asset);
 
-// If user picking a gif image, this callback will be called.
-// 如果用户选择了一个gif图片，下面的handle会被执行
-@property (nonatomic, copy) void (^didFinishPickingGifImageHandle)(UIImage *animatedImage,id sourceAssets);
-
 @property (nonatomic, weak) id<TZImagePickerControllerDelegate> pickerDelegate;
 
 @end
@@ -185,8 +181,8 @@
 // 如果isSelectOriginalPhoto为YES，表明用户选择了原图
 // 你可以通过一个asset获得原图，通过这个方法：[[TZImageManager manager] getOriginalPhotoWithAsset:completion:]
 // photos数组里的UIImage对象，默认是828像素宽，你可以通过设置photoWidth属性的值来改变它
-- (void)imagePickerController:(TZImagePickerController *)picker didFinishPickingPhotos:(NSArray<UIImage *> *)photos sourceAssets:(NSArray *)assets isSelectOriginalPhoto:(BOOL)isSelectOriginalPhoto;
-- (void)imagePickerController:(TZImagePickerController *)picker didFinishPickingPhotos:(NSArray<UIImage *> *)photos sourceAssets:(NSArray *)assets isSelectOriginalPhoto:(BOOL)isSelectOriginalPhoto infos:(NSArray<NSDictionary *> *)infos;
+- (void)imagePickerController:(TZImagePickerController *)picker didFinishPickingPhotos:(NSArray<UIImage *> *)photos models:(NSArray *)modes sourceAssets:(NSArray *)assets isSelectOriginalPhoto:(BOOL)isSelectOriginalPhoto;
+- (void)imagePickerController:(TZImagePickerController *)picker didFinishPickingPhotos:(NSArray<UIImage *> *)photos models:(NSArray *)modes sourceAssets:(NSArray *)assets isSelectOriginalPhoto:(BOOL)isSelectOriginalPhoto infos:(NSArray<NSDictionary *> *)infos;
 //- (void)imagePickerControllerDidCancel:(TZImagePickerController *)picker __attribute__((deprecated("Use -tz_imagePickerControllerDidCancel:.")));
 - (void)tz_imagePickerControllerDidCancel:(TZImagePickerController *)picker;
 
@@ -196,9 +192,6 @@
 // 如果系统版本大于iOS8，asset是PHAsset类的对象，否则是ALAsset类的对象
 - (void)imagePickerController:(TZImagePickerController *)picker didFinishPickingVideo:(UIImage *)coverImage sourceAssets:(id)asset;
 
-// If user picking a gif image, this callback will be called.
-// 如果用户选择了一个gif图片，下面的handle会被执行
-- (void)imagePickerController:(TZImagePickerController *)picker didFinishPickingGifImage:(UIImage *)animatedImage sourceAssets:(id)asset;
 @end
 
 
