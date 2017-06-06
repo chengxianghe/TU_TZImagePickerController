@@ -8,6 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
+#if __has_include("YYImage.h")
+#import "YYImage.h"
+#elif __has_include(<YYImage/YYImage.h>)
+#import <YYImage/YYImage.h>
+#else
+@import YYImage;
+#endif
+
 @class TZAssetModel,TZProgressView,TZPhotoPreviewView;
 @interface TZPhotoPreviewCell : UICollectionViewCell
 
@@ -26,7 +34,7 @@
 
 
 @interface TZPhotoPreviewView : UIView
-@property (nonatomic, strong) UIImageView *imageView;
+@property (nonatomic, strong) YYAnimatedImageView *imageView;
 @property (nonatomic, strong) UIScrollView *scrollView;
 @property (nonatomic, strong) UIView *imageContainerView;
 @property (nonatomic, strong) TZProgressView *progressView;

@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		145519721EE6B29400F8AAB2 /* YYAnimatedImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 145519691EE6B29400F8AAB2 /* YYAnimatedImageView.m */; };
+		145519731EE6B29400F8AAB2 /* YYFrameImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 1455196B1EE6B29400F8AAB2 /* YYFrameImage.m */; };
+		145519741EE6B29400F8AAB2 /* YYImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 1455196D1EE6B29400F8AAB2 /* YYImage.m */; };
+		145519751EE6B29400F8AAB2 /* YYImageCoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 1455196F1EE6B29400F8AAB2 /* YYImageCoder.m */; };
+		145519761EE6B29400F8AAB2 /* YYSpriteSheetImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 145519711EE6B29400F8AAB2 /* YYSpriteSheetImage.m */; };
+		145519791EE6B38500F8AAB2 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 145519781EE6B38500F8AAB2 /* libz.tbd */; };
 		6D32B9BD1CD83640005CE1E0 /* LxGridViewFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D32B9BC1CD83640005CE1E0 /* LxGridViewFlowLayout.m */; };
 		6D5358CD1D64600F00928CC6 /* NSBundle+TZImagePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D5358CC1D64600F00928CC6 /* NSBundle+TZImagePicker.m */; };
 		6DC358661CC8BAFD00898D29 /* TZImagePickerController.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 6DC358651CC8BAFD00898D29 /* TZImagePickerController.bundle */; };
@@ -51,6 +57,17 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		145519681EE6B29400F8AAB2 /* YYAnimatedImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYAnimatedImageView.h; sourceTree = "<group>"; };
+		145519691EE6B29400F8AAB2 /* YYAnimatedImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYAnimatedImageView.m; sourceTree = "<group>"; };
+		1455196A1EE6B29400F8AAB2 /* YYFrameImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYFrameImage.h; sourceTree = "<group>"; };
+		1455196B1EE6B29400F8AAB2 /* YYFrameImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYFrameImage.m; sourceTree = "<group>"; };
+		1455196C1EE6B29400F8AAB2 /* YYImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYImage.h; sourceTree = "<group>"; };
+		1455196D1EE6B29400F8AAB2 /* YYImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYImage.m; sourceTree = "<group>"; };
+		1455196E1EE6B29400F8AAB2 /* YYImageCoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYImageCoder.h; sourceTree = "<group>"; };
+		1455196F1EE6B29400F8AAB2 /* YYImageCoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYImageCoder.m; sourceTree = "<group>"; };
+		145519701EE6B29400F8AAB2 /* YYSpriteSheetImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYSpriteSheetImage.h; sourceTree = "<group>"; };
+		145519711EE6B29400F8AAB2 /* YYSpriteSheetImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYSpriteSheetImage.m; sourceTree = "<group>"; };
+		145519781EE6B38500F8AAB2 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		6D12FC191D66B71E00182C44 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
 		6D12FC1A1D66B71E00182C44 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		6D32B9BB1CD83640005CE1E0 /* LxGridViewFlowLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LxGridViewFlowLayout.h; sourceTree = "<group>"; };
@@ -107,6 +124,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				145519791EE6B38500F8AAB2 /* libz.tbd in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -127,6 +145,31 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		145519671EE6B29400F8AAB2 /* YYImage */ = {
+			isa = PBXGroup;
+			children = (
+				145519681EE6B29400F8AAB2 /* YYAnimatedImageView.h */,
+				145519691EE6B29400F8AAB2 /* YYAnimatedImageView.m */,
+				1455196A1EE6B29400F8AAB2 /* YYFrameImage.h */,
+				1455196B1EE6B29400F8AAB2 /* YYFrameImage.m */,
+				1455196C1EE6B29400F8AAB2 /* YYImage.h */,
+				1455196D1EE6B29400F8AAB2 /* YYImage.m */,
+				1455196E1EE6B29400F8AAB2 /* YYImageCoder.h */,
+				1455196F1EE6B29400F8AAB2 /* YYImageCoder.m */,
+				145519701EE6B29400F8AAB2 /* YYSpriteSheetImage.h */,
+				145519711EE6B29400F8AAB2 /* YYSpriteSheetImage.m */,
+			);
+			path = YYImage;
+			sourceTree = "<group>";
+		};
+		145519771EE6B38500F8AAB2 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				145519781EE6B38500F8AAB2 /* libz.tbd */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		6DC358641CC8BAE300898D29 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -142,6 +185,7 @@
 				900E65981C2BB8D5003D9A9E /* TZImagePickerControllerTests */,
 				900E65A31C2BB8D5003D9A9E /* TZImagePickerControllerUITests */,
 				900E657D1C2BB8D5003D9A9E /* Products */,
+				145519771EE6B38500F8AAB2 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -158,6 +202,7 @@
 		900E657E1C2BB8D5003D9A9E /* TZImagePickerController */ = {
 			isa = PBXGroup;
 			children = (
+				145519671EE6B29400F8AAB2 /* YYImage */,
 				900EEFF51C2BBF7600EA709B /* TZImagePickerController */,
 				900E65821C2BB8D5003D9A9E /* AppDelegate.h */,
 				900E65831C2BB8D5003D9A9E /* AppDelegate.m */,
@@ -370,8 +415,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				9038D5911C3974F0007DE549 /* TZTestCell.m in Sources */,
+				145519731EE6B29400F8AAB2 /* YYFrameImage.m in Sources */,
 				900EF00F1C2C0B1100EA709B /* TZAssetModel.m in Sources */,
 				900EEFFE1C2BD58B00EA709B /* TZPhotoPickerController.m in Sources */,
+				145519721EE6B29400F8AAB2 /* YYAnimatedImageView.m in Sources */,
 				90EBF5D61C2E298000CB9BCC /* UIView+Layout.m in Sources */,
 				90CE84B71C3BABB6003D0779 /* TZVideoPlayerController.m in Sources */,
 				900EF0021C2BD7E400EA709B /* TZAssetCell.m in Sources */,
@@ -381,12 +428,15 @@
 				900E65871C2BB8D5003D9A9E /* ViewController.m in Sources */,
 				90CE84AE1C3A89EF003D0779 /* TZImageManager.m in Sources */,
 				900E65841C2BB8D5003D9A9E /* AppDelegate.m in Sources */,
+				145519741EE6B29400F8AAB2 /* YYImage.m in Sources */,
 				900E65811C2BB8D5003D9A9E /* main.m in Sources */,
 				900EF0121C2C107400EA709B /* TZPhotoPreviewController.m in Sources */,
 				6D5358CD1D64600F00928CC6 /* NSBundle+TZImagePicker.m in Sources */,
+				145519761EE6B29400F8AAB2 /* YYSpriteSheetImage.m in Sources */,
 				900EEFF81C2BBF9500EA709B /* TZImagePickerController.m in Sources */,
 				902938D81EE2D02C000F2F8F /* TZLocationManager.m in Sources */,
 				6DC84D0A1DF5358500A107A9 /* TZImageCropManager.m in Sources */,
+				145519751EE6B29400F8AAB2 /* YYImageCoder.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

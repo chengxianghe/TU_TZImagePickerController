@@ -91,7 +91,7 @@
         _imageContainerView.contentMode = UIViewContentModeScaleAspectFill;
         [_scrollView addSubview:_imageContainerView];
         
-        _imageView = [[UIImageView alloc] init];
+        _imageView = [[YYAnimatedImageView alloc] init];
         _imageView.backgroundColor = [UIColor colorWithWhite:1.000 alpha:0.500];
         _imageView.contentMode = UIViewContentModeScaleAspectFill;
         _imageView.clipsToBounds = YES;
@@ -125,7 +125,7 @@
     if (model.type == TZAssetModelMediaTypePhotoGif) {
         [[TZImageManager manager] getOriginalPhotoDataWithAsset:model.asset completion:^(NSData *data, NSDictionary *info, BOOL isDegraded) {
             if (!isDegraded) {
-                self.imageView.image = [UIImage sd_tz_animatedGIFWithData:data];
+                self.imageView.image = [YYImage imageWithData:data];
                 [self resizeSubviews];
             }
         }];
