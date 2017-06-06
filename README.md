@@ -1,8 +1,8 @@
 # TU_TZImagePickerController
 
 - fork from [TZImagePickerController](https://github.com/banchichen/TZImagePickerController)
-- add some features
-- add support gif multi-selection
+- 优化了Gif的支持（add some features）
+- 支持Gif多选 （add support gif multi-selection）
 
 # TZImagePickerController
  A clone of UIImagePickerController, support picking multiple photos、original photo、video, also allow preview photo and video, fitting iOS6789 system.   
