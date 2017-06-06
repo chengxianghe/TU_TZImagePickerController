@@ -154,8 +154,8 @@
 // 如果isSelectOriginalPhoto为YES，表明用户选择了原图
 // 你可以通过一个asset获得原图，通过这个方法：[[TZImageManager manager] getOriginalPhotoWithAsset:completion:]
 // photos数组里的UIImage对象，默认是828像素宽，你可以通过设置photoWidth属性的值来改变它
-@property (nonatomic, copy) void (^didFinishPickingPhotosHandle)(NSArray<UIImage *> *photos,NSArray *assets,BOOL isSelectOriginalPhoto);
-@property (nonatomic, copy) void (^didFinishPickingPhotosWithInfosHandle)(NSArray<UIImage *> *photos,NSArray *assets,BOOL isSelectOriginalPhoto,NSArray<NSDictionary *> *infos);
+@property (nonatomic, copy) void (^didFinishPickingPhotosHandle)(NSArray<TZAssetModel *> *models,NSArray<UIImage *> *photos,NSArray *assets,BOOL isSelectOriginalPhoto);
+@property (nonatomic, copy) void (^didFinishPickingPhotosWithInfosHandle)(NSArray<TZAssetModel *> *models,NSArray<UIImage *> *photos,NSArray *assets,BOOL isSelectOriginalPhoto,NSArray<NSDictionary *> *infos);
 @property (nonatomic, copy) void (^imagePickerControllerDidCancelHandle)();
 
 // If user picking a video, this handle will be called.

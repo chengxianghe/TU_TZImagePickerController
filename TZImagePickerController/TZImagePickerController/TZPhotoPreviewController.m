@@ -306,7 +306,7 @@
         self.doneButtonClickBlock(_isSelectOriginalPhoto);
     }
     if (self.doneButtonClickBlockWithPreviewType) {
-        self.doneButtonClickBlockWithPreviewType(self.photos,_tzImagePickerVc.selectedAssets,self.isSelectOriginalPhoto);
+        self.doneButtonClickBlockWithPreviewType(self.models,self.photos,_tzImagePickerVc.selectedAssets,self.isSelectOriginalPhoto);
     }
 }
 

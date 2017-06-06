@@ -41,7 +41,7 @@
 
 - (void)setModel:(TZAssetModel *)model {
     _model = model;
-    _previewView.asset = model.asset;
+    _previewView.model = model;
 }
 
 - (void)recoverSubviews {

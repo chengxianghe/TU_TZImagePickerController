@@ -188,10 +188,10 @@
         previewVc.photos = [NSMutableArray arrayWithArray:selectedPhotos];
         previewVc.currentIndex = index;
         __weak typeof(self) weakSelf = self;
-        [previewVc setDoneButtonClickBlockWithPreviewType:^(NSArray<UIImage *> *photos, NSArray *assets, BOOL isSelectOriginalPhoto) {
+        [previewVc setDoneButtonClickBlockWithPreviewType:^(NSArray<TZAssetModel *> *models, NSArray<UIImage *> *photos, NSArray *assets, BOOL isSelectOriginalPhoto) {
             [weakSelf dismissViewControllerAnimated:YES completion:^{
                 if (weakSelf.didFinishPickingPhotosHandle) {
-                    weakSelf.didFinishPickingPhotosHandle(photos,assets,isSelectOriginalPhoto);
+                    weakSelf.didFinishPickingPhotosHandle(models,photos,assets,isSelectOriginalPhoto);
                 }
             }];
         }];

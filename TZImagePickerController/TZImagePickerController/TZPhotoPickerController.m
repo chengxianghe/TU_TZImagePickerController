@@ -365,10 +365,10 @@ static CGSize AssetGridThumbnailSize;
         [tzImagePickerVc.pickerDelegate imagePickerController:tzImagePickerVc didFinishPickingPhotos:photos sourceAssets:assets isSelectOriginalPhoto:_isSelectOriginalPhoto infos:infoArr];
     }
     if (tzImagePickerVc.didFinishPickingPhotosHandle) {
-        tzImagePickerVc.didFinishPickingPhotosHandle(photos,assets,_isSelectOriginalPhoto);
+        tzImagePickerVc.didFinishPickingPhotosHandle(tzImagePickerVc.selectedModels,photos,assets,_isSelectOriginalPhoto);
     }
     if (tzImagePickerVc.didFinishPickingPhotosWithInfosHandle) {
-        tzImagePickerVc.didFinishPickingPhotosWithInfosHandle(photos,assets,_isSelectOriginalPhoto,infoArr);
+        tzImagePickerVc.didFinishPickingPhotosWithInfosHandle(tzImagePickerVc.selectedModels,photos,assets,_isSelectOriginalPhoto,infoArr);
     }
 }
 
@@ -464,15 +464,15 @@ static CGSize AssetGridThumbnailSize;
             videoPlayerVc.model = model;
             [self.navigationController pushViewController:videoPlayerVc animated:YES];
         }
-    } else if (model.type == TZAssetModelMediaTypePhotoGif && tzImagePickerVc.allowPickingGif) {
-        if (tzImagePickerVc.selectedModels.count > 0) {
-            TZImagePickerController *imagePickerVc = (TZImagePickerController *)self.navigationController;
-            [imagePickerVc showAlertWithTitle:[NSBundle tz_localizedStringForKey:@"Can not choose both photo and GIF"]];
-        } else {
-            TZGifPhotoPreviewController *gifPreviewVc = [[TZGifPhotoPreviewController alloc] init];
-            gifPreviewVc.model = model;
-            [self.navigationController pushViewController:gifPreviewVc animated:YES];
-        }
+//    } else if (model.type == TZAssetModelMediaTypePhotoGif && tzImagePickerVc.allowPickingGif) {
+////        if (tzImagePickerVc.selectedModels.count > 0) {
+////            TZImagePickerController *imagePickerVc = (TZImagePickerController *)self.navigationController;
+////            [imagePickerVc showAlertWithTitle:[NSBundle tz_localizedStringForKey:@"Can not choose both photo and GIF"]];
+////        } else {
+//            TZGifPhotoPreviewController *gifPreviewVc = [[TZGifPhotoPreviewController alloc] init];
+//            gifPreviewVc.model = model;
+//            [self.navigationController pushViewController:gifPreviewVc animated:YES];
+////        }
     } else {
         TZPhotoPreviewController *photoPreviewVc = [[TZPhotoPreviewController alloc] init];
         photoPreviewVc.currentIndex = index;
