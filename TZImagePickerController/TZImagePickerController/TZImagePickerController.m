@@ -481,6 +481,8 @@
     // NSLog(@"%@ dealloc",NSStringFromClass(self.class));
 }
 
+#pragma mark - Getter
+
 - (NSMutableArray<TZAssetModel *> *)selectedModels {
     if (!_selectedModels) {
         _selectedModels = [NSMutableArray array];

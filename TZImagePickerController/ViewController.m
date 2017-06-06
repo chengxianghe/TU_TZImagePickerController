@@ -548,10 +548,12 @@
     }
 }
 
+//允许裁剪的时候，不能选原图和GIF
 - (IBAction)allowCropSwitchClick:(UISwitch *)sender {
     if (sender.isOn) {
         self.maxCountTF.text = @"1";
         [self.allowPickingOriginalPhotoSwitch setOn:NO animated:YES];
+        [self.allowPickingGifSwitch setOn:NO animated:YES];
     } else {
         [self.needCircleCropSwitch setOn:NO animated:YES];
     }

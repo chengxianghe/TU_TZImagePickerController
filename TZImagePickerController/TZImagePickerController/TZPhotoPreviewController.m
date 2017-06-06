@@ -418,14 +418,8 @@
     _doneButton.hidden = NO;
     _selectButton.hidden = !_tzImagePickerVc.showSelectBtn;
     
-    // don‘t allow choose GIF
-    if (model.type == TZAssetModelMediaTypePhotoGif && !_tzImagePickerVc.allowPickingGif) {
-        _selectButton.hidden = YES;
-        _originalPhotoButton.hidden = YES;
-        _originalPhotoLabel.hidden = YES;
-    }
-    // 让宽度/高度小于 最小可选照片尺寸 的图片不能选中
-    if (![[TZImageManager manager] isPhotoSelectableWithAsset:model.asset]) {
+    // 让宽度/高度小于 最小可选照片尺寸 的图片不能选中 或者不允许选择gif的时候预览了gif
+    if (![[TZImageManager manager] isPhotoSelectableWithAsset:model.asset] || (model.type == TZAssetModelMediaTypePhotoGif && !_tzImagePickerVc.allowPickingGif)) {
         _numberLabel.hidden = YES;
         _numberImageView.hidden = YES;
         _selectButton.hidden = YES;
