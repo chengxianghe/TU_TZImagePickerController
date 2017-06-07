@@ -160,7 +160,11 @@
         } else { // preview photos / 预览照片
             TZImagePickerController *imagePickerVc = [[TZImagePickerController alloc] initWithSelectedAssets:_selectedAssets selectedPhotos:_selectedPhotos index:indexPath.row];
             imagePickerVc.maxImagesCount = self.maxCountTF.text.integerValue;
+            // 3. 设置是否可以选择视频/图片/原图
+            imagePickerVc.allowPickingImage = self.allowPickingImageSwitch.isOn;
             imagePickerVc.allowPickingOriginalPhoto = self.allowPickingOriginalPhotoSwitch.isOn;
+            imagePickerVc.allowPickingGif = self.allowPickingGifSwitch.isOn;
+            
             imagePickerVc.isSelectOriginalPhoto = _isSelectOriginalPhoto;
             imagePickerVc.selectedModels = _selectedModels;
             [imagePickerVc setDidFinishPickingPhotosHandle:^(NSArray<TZAssetModel *> *models, NSArray<UIImage *> *photos, NSArray *assets, BOOL isSelectOriginalPhoto) {
