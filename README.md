@@ -10,7 +10,7 @@
 pod 'TU_TZImagePickerController', :git => 'https://github.com/chengxianghe/TU_TZImagePickerController.git'
 ```
 
-- 如果项目已经包含YYImage
+- 如果项目已经包含YYImage （推荐，更流畅）
 ```
 pod 'TU_TZImagePickerController', :git => 'https://github.com/chengxianghe/TU_TZImagePickerController.git', :branch => 'YYImage_ImagePicker'
 ```
